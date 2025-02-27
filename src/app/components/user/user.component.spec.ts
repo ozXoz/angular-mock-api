@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserComponent } from './user.component';
 import { MockApiService } from '../../services/mock-api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing'; // ✅ Import HTTP testing module
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 
 describe('UserComponent', () => {
   let component: UserComponent;
@@ -81,7 +81,7 @@ describe('UserComponent', () => {
   });
 
   it('should log an error when the API fails', () => {
-    spyOn(mockApiService, 'getMockUser').and.returnValue(of(new Error('API Error')));
+    spyOn(mockApiService, 'getMockUser').and.returnValue(throwError(() => new Error('API Error')));
     spyOn(console, 'error');
 
     component.ngOnInit();
