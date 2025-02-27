@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: 🛠 Checkout Repository
-        uses: actions/checkout@v4  # Updated from v3 to v4
+        uses: actions/checkout@v4  # Ensures the latest version is used
 
       - name: 🏗 Set Up Node.js Environment
         uses: actions/setup-node@v3
@@ -32,8 +32,14 @@ jobs:
       - name: 🔍 Verify Cypress Installation
         run: npx cypress verify
 
-      - name: 🔍 Check for Cypress Configuration
-        run: ls -la cypress.config.ts || ls -la cypress.json
+      - name: 🔍 Check for Cypress Configuration & Spec Files
+        run: |
+          ls -la cypress.config.ts || ls -la cypress.json
+          ls -la cypress/e2e || echo "No Cypress test files found!"
+          if [ ! -d "cypress/e2e" ] || [ -z "$(ls -A cypress/e2e)" ]; then
+            echo "ERROR: No Cypress test files found!"
+            exit 1
+          fi
 
       - name: 🔨 Build Angular Project
         run: npm run build --if-present
@@ -67,14 +73,16 @@ jobs:
 
       - name: 📤 Upload Cypress Screenshots (If Tests Fail)
         if: failure()
-        uses: actions/upload-artifact@v4  # Updated from v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
           path: cypress/screenshots
+        continue-on-error: true
 
       - name: 📤 Upload Cypress Videos (For Debugging)
         if: always()
-        uses: actions/upload-artifact@v4  # Updated from v3 to v4
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: cypress/videos
+        continue-on-error: true
