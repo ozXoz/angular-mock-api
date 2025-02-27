@@ -28,15 +28,12 @@ jobs:
 
       - name: 📦 Install Cypress
         run: npm install --save-dev cypress
-        # ✅ Ensures Cypress is installed before running tests
 
       - name: 🔍 Verify Cypress Installation
         run: npx cypress verify
-        # ✅ Verifies Cypress installation before running tests
 
       - name: 🔍 Check for Cypress Configuration
         run: ls -la cypress.config.ts || ls -la cypress.json
-        # ✅ Checks if Cypress configuration file exists
 
       - name: 🔨 Build Angular Project
         run: npm run build --if-present
@@ -45,11 +42,10 @@ jobs:
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
       - name: 🚀 Start Angular Local Server
-        run: npm start &
-        continue-on-error: true
-
-      - name: 🏁 Wait for Localhost to Start
-        run: sleep 20
+        run: |
+          npm start &
+          echo "Waiting for Angular server to start..."
+          npx wait-on http://localhost:4200 --timeout 60000
 
       - name: 🔍 Test API Endpoint (Mock Data)
         run: curl -s http://localhost:4200/assets/mock-data.json || exit 1
@@ -60,5 +56,21 @@ jobs:
           install-command: npm ci
           start: npm start
           wait-on: "http://localhost:4200"
+          wait-on-timeout: 120
           browser: chrome
-          config-file: cypress.config.ts # ✅ Ensure Cypress uses the correct config file
+          config-file: cypress.config.ts
+          spec: cypress/e2e/**/*.cy.{js,jsx,ts,tsx}
+
+      - name: 📤 Upload Cypress Screenshots (If Tests Fail)
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+
+      - name: 📤 Upload Cypress Videos (For Debugging)
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-videos
+          path: cypress/videos
