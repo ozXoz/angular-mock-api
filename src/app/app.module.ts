@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -9,7 +9,7 @@ import { MockApiService } from './services/mock-api.service';
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent // ✅ Ensure UserComponent is registered
   ],
   imports: [
     BrowserModule,
@@ -17,6 +17,7 @@ import { MockApiService } from './services/mock-api.service';
     AppRoutingModule
   ],
   providers: [MockApiService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA] // ✅ Allow unknown custom elements
 })
 export class AppModule {}
