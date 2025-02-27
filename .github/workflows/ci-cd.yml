@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: 🛠 Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Updated from v3 to v4
 
       - name: 🏗 Set Up Node.js Environment
         uses: actions/setup-node@v3
@@ -41,6 +41,10 @@ jobs:
       - name: ✅ Run Unit Tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
 
+      - name: 🚀 Kill Any Running Process on Port 4200
+        run: |
+          sudo lsof -t -i:4200 | xargs sudo kill -9 || echo "No process found on port 4200"
+
       - name: 🚀 Start Angular Local Server
         run: |
           npm start &
@@ -63,14 +67,14 @@ jobs:
 
       - name: 📤 Upload Cypress Screenshots (If Tests Fail)
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
       - name: 📤 Upload Cypress Videos (For Debugging)
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Updated from v3 to v4
         with:
           name: cypress-videos
           path: cypress/videos
