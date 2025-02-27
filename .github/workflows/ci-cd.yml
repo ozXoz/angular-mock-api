@@ -1,0 +1,58 @@
+name: 🛠 Angular CI/CD Pipeline (Localhost Test)
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    name: 🔨 Build, Serve & Test Angular App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🛠 Checkout Repository
+        uses: actions/checkout@v3
+        # Clones the repository to the GitHub runner.
+
+      - name: 🏗 Set Up Node.js Environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+        # Installs Node.js 18 and caches dependencies.
+
+      - name: 📦 Install Dependencies
+        run: npm install
+        # Installs all required project dependencies.
+
+      - name: 🔨 Build Angular Project
+        run: npm run build --if-present
+        # Builds the Angular project.
+
+      - name: ✅ Run Unit Tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+        # Runs unit tests in a headless Chrome environment.
+
+      - name: 🚀 Start Angular Local Server
+        run: npm start &
+        # Starts the Angular development server in the background.
+
+      - name: 🏁 Wait for Localhost to Start
+        run: sleep 20
+        # Gives time for the Angular server to fully start.
+
+      - name: 🔍 Test API Endpoint (Mock Data)
+        run: curl -s http://localhost:4200/assets/mock-data.json
+        # Fetches the mock API data to ensure it's accessible.
+
+      - name: 🏁 Run Cypress End-to-End Tests
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm start
+          wait-on: "http://localhost:4200"
+          browser: chrome
+        # Runs E2E tests to ensure the frontend is working correctly.
