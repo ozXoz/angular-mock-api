@@ -16,41 +16,33 @@ jobs:
     steps:
       - name: 🛠 Checkout Repository
         uses: actions/checkout@v3
-        # Clones the repository to the GitHub runner.
 
       - name: 🏗 Set Up Node.js Environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'npm'
-        # Installs Node.js 18 and caches dependencies.
 
       - name: 📦 Install Dependencies
         run: npm ci
-        # Uses `npm ci` instead of `npm install` for a clean install.
 
       - name: 🔨 Build Angular Project
         run: npm run build --if-present
-        # Builds the Angular project.
 
       - name: ✅ Run Unit Tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
         continue-on-error: false
-        # Runs unit tests in a headless Chrome environment.
 
       - name: 🚀 Start Angular Local Server
         run: npm start &
         env:
           CI: true
-        # Starts the Angular development server in the background.
 
       - name: 🏁 Wait for Localhost to Start
         run: npx wait-on http://localhost:4200
-        # Ensures the server is fully up before proceeding.
 
       - name: 🔍 Test API Endpoint (Mock Data)
         run: curl -s -o /dev/null -w "%{http_code}" http://localhost:4200/assets/mock-data.json | grep 200
-        # Ensures the mock data API is returning HTTP 200.
 
       - name: 🏁 Run Cypress End-to-End Tests
         uses: cypress-io/github-action@v5
@@ -58,10 +50,7 @@ jobs:
           start: npm start
           wait-on: "http://localhost:4200"
           browser: chrome
-        # Runs E2E tests to ensure the frontend is working correctly.
 
       - name: 🚀 Stop Local Server
         if: always()
         run: pkill -f "ng serve" || true
-        # Ensures the server is stopped after tests.
-
