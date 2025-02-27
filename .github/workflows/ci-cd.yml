@@ -30,28 +30,35 @@ jobs:
         run: npm install --save-dev cypress
         # ✅ Ensures Cypress is installed before running tests
 
+      - name: 🔍 Verify Cypress Installation
+        run: npx cypress verify
+        # ✅ Verifies Cypress installation before running tests
+
+      - name: 🔍 Check for Cypress Configuration
+        run: ls -la cypress.config.ts || ls -la cypress.json
+        # ✅ Checks if Cypress configuration file exists
+
       - name: 🔨 Build Angular Project
         run: npm run build --if-present
 
       - name: ✅ Run Unit Tests
         run: npm test -- --watch=false --browsers=ChromeHeadless
-        continue-on-error: true  # ✅ Prevent pipeline failure for minor test failures
 
       - name: 🚀 Start Angular Local Server
         run: npm start &
-        continue-on-error: true  # ✅ Allow pipeline to continue even if minor errors occur
+        continue-on-error: true
 
       - name: 🏁 Wait for Localhost to Start
         run: sleep 20
 
       - name: 🔍 Test API Endpoint (Mock Data)
         run: curl -s http://localhost:4200/assets/mock-data.json || exit 1
-        # ✅ Ensures the mock API is working before running tests
 
       - name: 🏁 Run Cypress End-to-End Tests
         uses: cypress-io/github-action@v5
         with:
-          install-command: npm ci  # ✅ Reinstall Cypress to fix missing module error
+          install-command: npm ci
           start: npm start
           wait-on: "http://localhost:4200"
           browser: chrome
+          config-file: cypress.config.ts # ✅ Ensure Cypress uses the correct config file
