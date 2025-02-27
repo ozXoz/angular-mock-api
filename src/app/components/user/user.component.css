@@ -1,0 +1,141 @@
+/* 📌 User Menu Container */
+.user-menu {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    background: rgba(20, 20, 20, 0.95);
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    width: 250px;
+    box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.2);
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* 🔄 Show the menu when toggled */
+.user-menu.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 👤 Select User Type Button */
+.user-menu-btn {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s, border 0.3s ease-in-out;
+}
+
+/* 🖱️ Hover Effect */
+.user-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    transform: scale(1.05);
+}
+
+/* 🏷 Dropdown Label */
+.user-menu label {
+    font-size: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* 🔽 Dropdown Selector */
+.user-menu select {
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.user-menu select:hover {
+    background: #f0f0f0;
+}
+
+/* 👥 Filtered User List */
+.user-list-container {
+    margin-top: 12px;
+    max-height: 250px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    padding: 10px;
+    background: rgba(30, 30, 30, 0.8);
+}
+
+/* 📌 Individual User Item */
+.user-list-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.user-list-container li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+/* 🖱️ Hover Effect */
+.user-list-container li:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ⚠️ No User Match Warning */
+.user-menu p {
+    font-size: 14px;
+    text-align: center;
+    color: #ffcc00;
+    margin-top: 10px;
+}
+
+/* 🔽 Smooth Scrollbar */
+.user-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.user-list-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+/* 🎯 Responsive Adjustments */
+@media screen and (max-width: 600px) {
+    .user-menu {
+        width: 200px;
+    }
+
+    .user-menu-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+
+    .user-list-container {
+        max-height: 200px;
+    }
+}

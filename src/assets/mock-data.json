@@ -1,0 +1,14 @@
+[
+  {
+    "user_type": "standard",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "permissions": ["read", "view_dashboard"]
+  },
+  {
+    "user_type": "admin",
+    "name": "Alice Johnson",
+    "email": "alicejohnson@example.com",
+    "permissions": ["read", "write", "edit", "delete", "manage_users", "view_dashboard"]
+  }
+]

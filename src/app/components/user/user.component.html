@@ -1,0 +1,28 @@
+<!-- Button to Show/Hide the Dropdown -->
+<button (click)="toggleUserMenu()" class="user-menu-btn">👤 Select User Type</button>
+
+<!-- Dropdown & User List -->
+<div class="user-menu" [class.show]="showUserMenu">
+  <label for="userType"><strong>Select User Type:</strong></label>
+  <select id="userType" (change)="filterUsers($event)">
+    <option value="all">All Users</option>
+    <option value="standard">Standard User</option>
+    <option value="admin">Admin</option>
+  </select>
+
+  <div *ngIf="filteredUsers.length > 0">
+    <h3>Filtered Users</h3>
+    <ul>
+      <li *ngFor="let user of filteredUsers">
+        <strong>Name:</strong> {{ user.name }}<br>
+        <strong>Email:</strong> {{ user.email }}<br>
+        <strong>User Type:</strong> {{ user.user_type }}<br>
+        <strong>Permissions:</strong> {{ user.permissions?.join(', ') }}
+        <hr>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="filteredUsers.length === 0">
+    <p>⚠️ No users match this filter.</p>
+  </div>
+</div>

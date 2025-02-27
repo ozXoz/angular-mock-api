@@ -1,0 +1,126 @@
+/* 🌑 Fullscreen Background for 3D Viewer */
+.viewer-container {
+    background: black;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+}
+
+/* 🎥 3D Viewer Wrapper */
+.viewer-wrapper {
+    width: 100%;
+    height: 600px;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+}
+
+/* 👤 User Type Button - Styled Like Toolbar Icons */
+.user-menu-btn {
+    position: absolute;
+    top: 12px;
+    left: 15px;
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+/* Add Hover Effect */
+.user-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* 📂 Dropdown Menu - Clean Floating Style */
+.user-menu {
+    position: absolute;
+    top: 50px;
+    left: 15px;
+    background: rgba(20, 20, 20, 0.95);
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    width: 220px;
+    box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Show Dropdown */
+.user-menu.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 🏷 Dropdown Label */
+.user-menu label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+/* 🔽 Dropdown Selector */
+.user-menu select {
+    background: white;
+    color: black;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* 👥 Filtered User List */
+.user-menu ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    max-height: 180px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+/* 📌 Individual User Item */
+.user-menu li {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px;
+    border-radius: 5px;
+    font-size: 13px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+}
+
+/* ⚠️ No User Match Warning */
+.user-menu p {
+    font-size: 13px;
+    text-align: center;
+    color: #ffcc00;
+    margin-top: 10px;
+}
+
+/* 🔽 Smooth Scrollbar */
+.user-menu ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+.user-menu ul::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
