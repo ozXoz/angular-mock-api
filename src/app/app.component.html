@@ -1,18 +1,19 @@
-<!-- 3D Viewer Container -->
-<h1>3D Model Viewer</h1> <!-- ✅ Add this line at the top -->
+<h1 class="h1_txt">3D Model Viewer</h1>
 <div class="viewer-container">
   <div class="viewer-wrapper">
-    <iframe 
-      id="niraviewer" 
-      frameBorder="0" 
-      loading="lazy" 
-      class="niraIframe" 
-      width="100%" 
+    <!-- iFrame daima yüklensin -->
+    <iframe
+      id="niraviewer"
+      frameBorder="0"
+      loading="lazy"
+      class="niraIframe"
+      width="100%"
       height="100%"
-      src="https://view.fv3d.com/a/W3mgyfbVTn6YcQUsXLLTKg/1">
+      src="https://view.fv3d.com/a/W3mgyfbVTn6YcQUsXLLTKg/1"
+    >
     </iframe>
   </div>
 
-  <!-- User Selection Dropdown -->
-  <app-user></app-user>
+  <!-- Kullanıcı menüsünü sadece 3D Viewer "hazır" olduktan sonra göster -->
+  <app-user *ngIf="viewerReady"></app-user>
 </div>

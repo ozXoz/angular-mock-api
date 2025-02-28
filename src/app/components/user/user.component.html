@@ -1,8 +1,12 @@
 <!-- Button to Show/Hide the Dropdown -->
-<button (click)="toggleUserMenu()" class="user-menu-btn">👤 Select User Type</button>
+<button (click)="toggleUserMenu()" class="user-menu-btn">👤</button>
 
 <!-- Dropdown & User List -->
 <div class="user-menu" [class.show]="showUserMenu">
+   <!-- Close Button (X) -->
+   <button class="close-btn" (click)="toggleUserMenu()">
+    &times;
+  </button>
   <label for="userType"><strong>Select User Type:</strong></label>
   <select id="userType" (change)="filterUsers($event)">
     <option value="all">All Users</option>

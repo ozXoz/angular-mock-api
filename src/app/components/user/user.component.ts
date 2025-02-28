@@ -44,4 +44,8 @@ export class UserComponent implements OnInit {
   toggleUserMenu(): void {
     this.showUserMenu = !this.showUserMenu;
   }
+
+
+  
 }
+

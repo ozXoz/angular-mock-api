@@ -1,16 +1,38 @@
-/* 🌑 Fullscreen Background for 3D Viewer */
-.viewer-container {
-    background: black;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
+/* 🚀 Start Viewer Button */
+.start-viewer-btn {
+    background: #ffcc00;
+    color: #000;
+    font-size: 18px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+.h1_txt {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 2rem;
     text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #ffcc00 0%, #ff6600 100%);
+    -webkit-background-clip: text;  /* For Safari/Chrome */
+    -webkit-text-fill-color: transparent;
+    background-clip: text;         /* Standard property */
+    color: transparent;
+    text-shadow: none;            /* Usually remove shadow for gradient text */
+    
+  }
+  
+/* 🖱️ Hover Effect */
+.start-viewer-btn:hover {
+    background: #ffdd44;
+    transform: scale(1.05);
 }
 
-/* 🎥 3D Viewer Wrapper */
+/* 🎥 Viewer Wrapper */
 .viewer-wrapper {
     width: 100%;
     height: 600px;
@@ -20,107 +42,39 @@
     box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
 }
 
-/* 👤 User Type Button - Styled Like Toolbar Icons */
-.user-menu-btn {
+/* 🖼️ Iframe */
+.niraIframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    position: relative;
+    
+}
+
+/* 👤 User Selection Icon (Hidden Before Iframe Runs) */
+.user-menu-icon {
     position: absolute;
-    top: 12px;
+    top: 15px;
     left: 15px;
     background: transparent;
     color: white;
+    font-size: 24px;
     border: none;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out, transform 0.2s;
+    transition: transform 0.2s ease-in-out;
 }
 
-/* Add Hover Effect */
-.user-menu-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+/* 🖱️ Hover Effect */
+.user-menu-icon:hover {
+    transform: scale(1.1);
 }
 
-/* 📂 Dropdown Menu - Clean Floating Style */
+/* Hide User Menu Initially */
 .user-menu {
-    position: absolute;
-    top: 50px;
-    left: 15px;
-    background: rgba(20, 20, 20, 0.95);
-    color: white;
-    padding: 12px;
-    border-radius: 8px;
     display: none;
-    flex-direction: column;
-    width: 220px;
-    box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.15);
-    opacity: 0;
-    transform: translateY(-5px);
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
-/* Show Dropdown */
+/* Show User Menu when Active */
 .user-menu.show {
     display: flex;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* 🏷 Dropdown Label */
-.user-menu label {
-    font-size: 14px;
-    margin-bottom: 6px;
-    font-weight: bold;
-}
-
-/* 🔽 Dropdown Selector */
-.user-menu select {
-    background: white;
-    color: black;
-    padding: 8px;
-    border-radius: 5px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-/* 👥 Filtered User List */
-.user-menu ul {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-    max-height: 180px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-}
-
-/* 📌 Individual User Item */
-.user-menu li {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 8px;
-    border-radius: 5px;
-    font-size: 13px;
-    line-height: 1.4;
-    margin-bottom: 6px;
-}
-
-/* ⚠️ No User Match Warning */
-.user-menu p {
-    font-size: 13px;
-    text-align: center;
-    color: #ffcc00;
-    margin-top: 10px;
-}
-
-/* 🔽 Smooth Scrollbar */
-.user-menu ul::-webkit-scrollbar {
-    width: 6px;
-}
-
-.user-menu ul::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
 }

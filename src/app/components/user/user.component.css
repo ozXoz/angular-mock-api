@@ -1,6 +1,6 @@
 /* 📌 User Menu Container */
 .user-menu {
-    position: absolute;
+    position: absolute; /* or relative, depending on your preference */
     top: 50px;
     left: 15px;
     background: rgba(20, 20, 20, 0.95);
@@ -9,7 +9,7 @@
     border-radius: 8px;
     display: none;
     flex-direction: column;
-    width: 250px;
+    width: 220px;
     box-shadow: 0px 6px 15px rgba(255, 255, 255, 0.2);
     opacity: 0;
     transform: translateY(-5px);
@@ -23,55 +23,69 @@
     transform: translateY(0);
 }
 
+
+
 /* 👤 Select User Type Button */
 .user-menu-btn {
     position: absolute;
-    top: 12px;
+    top: 300px;
     left: 15px;
     background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 8px 14px;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     gap: 6px;
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.2s, border 0.3s ease-in-out;
+    background-color: rgb(0, 157, 255);
 }
 
 /* 🖱️ Hover Effect */
-.user-menu-btn:hover {
+/* .user-menu-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     border: 1px solid rgba(255, 255, 255, 0.6);
     transform: scale(1.05);
-}
+    background-color: #ffcc00;
+} */
 
 /* 🏷 Dropdown Label */
 .user-menu label {
-    font-size: 15px;
-    margin-bottom: 8px;
+    font-size: 14px;
+    margin-bottom: 6px;
     font-weight: bold;
 }
 
 /* 🔽 Dropdown Selector */
 .user-menu select {
-    background: white;
+    background: rgb(106, 15, 15);
     color: black;
-    padding: 10px;
+    padding: 8px;
     border-radius: 5px;
     border: none;
     font-size: 14px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
+}
+/* Close (X) Button */
+.close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: transparent;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 6px;
+    transition: color 0.3s;
 }
 
-/* Hover Effect */
-.user-menu select:hover {
-    background: #f0f0f0;
+.close-btn:hover {
+    color: #ffcc00; /* or any hover color you like */
 }
-
 /* 👥 Filtered User List */
 .user-list-container {
     margin-top: 12px;
